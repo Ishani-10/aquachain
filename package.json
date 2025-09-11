@@ -4,20 +4,21 @@
   "description": "Blockchain-Based Blue Carbon Registry and MRV System for coastal restoration verification",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/hardhat",
+    "packages/nextjs"
   ],
   "scripts": {
-    "build": "yarn workspace @blue-carbon/nextjs build",
-    "dev": "yarn workspace @blue-carbon/nextjs dev",
-    "hardhat": "yarn workspace @blue-carbon/hardhat hardhat",
-    "deploy": "yarn workspace @blue-carbon/hardhat deploy",
-    "test": "yarn workspace @blue-carbon/hardhat test",
-    "lint": "yarn workspace @blue-carbon/nextjs lint",
-    "start": "yarn workspace @blue-carbon/nextjs start"
+    "build": "yarn workspace @aquachain/nextjs build",
+    "dev": "yarn workspace @aquachain/nextjs dev",
+    "hardhat": "yarn workspace @aquachain/hardhat hardhat",
+    "deploy": "yarn workspace @aquachain/hardhat deploy",
+    "test": "yarn workspace @aquachain/hardhat test",
+    "lint": "yarn workspace @aquachain/nextjs lint",
+    "start": "yarn workspace @aquachain/nextjs start"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/blue-carbon-registry"
+    "url": "https://github.com/Ishani-10/aquachain"
   },
   "keywords": [
     "blockchain",
