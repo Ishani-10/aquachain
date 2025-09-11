@@ -1,1 +1,1 @@
-# AquaChain Ledger
+# AquaChain Ledger - Blue Carbon Registry
