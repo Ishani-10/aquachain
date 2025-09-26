@@ -1,8 +1,6 @@
-# Add these imports to your existing main.py
 import asyncio
 from verification.verification_service import AquaChainVerificationService
 
-# Add this after your existing imports and before app = FastAPI()
 verification_service = AquaChainVerificationService()
 
 from fastapi import FastAPI, UploadFile, File, Form, Depends
@@ -69,7 +67,7 @@ class VerificationResult(Base):
     __tablename__ = "verification_results"
 
     id = Column(String, primary_key=True)
-    report_id = Column(String, nullable=False)  # Links to your existing reports
+    report_id = Column(String, nullable=False)  # Links to existing reports
     verification_status = Column(String, nullable=False)  # APPROVED, REJECTED, ERROR
     verification_score = Column(String, nullable=True)  # Store as string for JSON compatibility
     total_photos = Column(String, nullable=True)
@@ -131,7 +129,7 @@ async def get_reports(db: Session = Depends(get_db)):
 
 @app.post("/api/reports")
 async def upload_report(
-        background_tasks: BackgroundTasks,  # Add this import: from fastapi import BackgroundTasks
+        background_tasks: BackgroundTasks, 
         projectName: str = Form(...),
         gps: str = Form(...),
         submittedAt: str = Form(...),
@@ -178,7 +176,6 @@ async def upload_report(
         print(f"Database error: {str(e)}")
         db.rollback()
         return {"success": False, "error": str(e)}
-
 
 # Add this new background task function
 async def verify_report_async(report_id: str, photo_urls: List[str], project_name: str, gps: str, db_session: Session):
@@ -252,7 +249,6 @@ if __name__ == "__main__":
 
     uvicorn.run(app, host='0.0.0.0', port=8001)
 
-
 @app.get("/api/reports/{report_id}/verification")
 async def get_report_verification(report_id: str, db: Session = Depends(get_db)):
     """
@@ -274,7 +270,6 @@ async def get_report_verification(report_id: str, db: Session = Depends(get_db))
             "verified_at": verification.verified_at.isoformat() if verification.verified_at else None
         }
     }
-
 
 @app.get("/api/reports/{report_id}/verification/details")
 async def get_detailed_verification(report_id: str, db: Session = Depends(get_db)):
@@ -301,7 +296,6 @@ async def get_detailed_verification(report_id: str, db: Session = Depends(get_db
     except Exception as e:
         return {"success": False, "error": str(e)}
 
-
 @app.get("/api/verification/summary")
 async def get_verification_summary(db: Session = Depends(get_db)):
     """
@@ -326,4 +320,5 @@ async def get_verification_summary(db: Session = Depends(get_db)):
             }
         }
     except Exception as e:
+
         return {"success": False, "error": str(e)}
