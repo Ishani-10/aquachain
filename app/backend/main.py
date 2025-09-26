@@ -10,6 +10,7 @@ from sqlalchemy import create_engine, Column, String, DateTime, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
 
 load_dotenv()
 
@@ -43,6 +44,15 @@ class Report(Base):
     gps = Column(String, nullable=False)
     submitted_at = Column(DateTime, default=datetime.datetime.now)
     status = Column(String, default="Pending")
+
+class User(Base):
+    __tablename__ = "users"
+    
+    id = Column(String, primary_key=True)
+    email = Column(String, nullable=False, unique=True)
+    username = Column(String, nullable=False)
+    password = Column(String, nullable=False)
+    created_at = Column(DateTime, default=datetime.datetime.now)
 
 # Create tables
 Base.metadata.create_all(bind=engine)
@@ -153,9 +163,39 @@ async def upload_report(
         return {"success": True, "id": report_id, "photo_urls": photo_urls}
         
     except Exception as e:
-        print(f"Database error: {str(e)}")  # Debug log
+        print(f"Database error: {str(e)}")
         db.rollback()
         return {"success": False, "error": str(e)}
+
+@app.post("/api/register")
+async def register(email: str = Form(...), username: str = Form(...), password: str = Form(...), db: Session = Depends(get_db)):
+    
+    try:
+        hashed_password = generate_password_hash(password, "pbkdf2:sha256", 8)
+
+        user_check = db.query(User).filter(User.email==email).first()
+        if user_check:
+            return {"success": False, "message": "User already exists"}
+
+        user_id = str(uuid.uuid4())
+        user = User(id=user_id, email=email, username=username, password=hashed_password)
+        db.add(user)
+        db.commit()
+        return {"success": True, "message": "User registered successfully"}
+    except Exception as e:
+        return {"sucess": False, "message": f"Error: {e}"}
+    
+@app.post("/api/login")
+async def login(email: str = Form(...), password: str = Form(...), db: Session = Depends(get_db)):
+    try:
+        user = db.query(User).filter(User.email==email).first()
+
+        if user and check_password_hash(user.password, password):
+            return {"success": True, "message": "Login successful", "username": user.username}
+        else:
+            return {"success": False, "message": "Invalid username or password"}
+    except Exception as e:
+        return {"sucess": False, "message": f"Error: {e}"}
 
 if __name__ == "__main__":
     import uvicorn
