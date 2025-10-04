@@ -610,7 +610,6 @@ function SavedReportsScreen({ route }) {
   );
 }
 // ===================== App Root =====================
-// ===================== App Root =====================
 const Stack = createStackNavigator();
 
 export default function App() {
