@@ -1,6 +1,9 @@
+// Simple Multi-language support for AquaChain App (without AsyncStorage)
 import React, { createContext, useContext, useState } from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, FlatList } from 'react-native';
 
+
+// Language translations
 const translations = {
   en: {
     // App Name
