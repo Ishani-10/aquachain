@@ -1,0 +1,126 @@
+# AquaChain Project Structure
+
+
+
+```
+aquachain-app/
+│
+├── App.js                          # Main app entry point (simplified)
+├── LanguageContext.js              # Language context (keep as is)
+├── ProjectSelectionScreen.js       # Project selection (keep as is)
+│
+├── assets/
+│   └── images/
+│       └── app-logo.jpg
+│
+├── screens/                        # All screen components
+│   ├── LoginScreen.js
+│   ├── MainScreen.js
+│   ├── ReportScreen.js
+│   └── SavedReportsScreen.js
+│
+├── components/                     # Reusable components
+│   ├── CustomButton.js
+│   ├── WorkTypeModal.js
+│   └── PhotoDetailModal.js
+│
+├── config/                         # Configuration files
+│   ├── constants.js                # Server URLs and endpoints
+│   └── workTypes.js                # Work type configurations
+│
+└── styles/                         # Style files
+    └── styles.js                   # All StyleSheet definitions
+```
+
+## 🔄 Migration Steps
+
+### 1. Create the folder structure:
+```bash
+mkdir screens components config styles
+```
+
+### 2. Move/Create files in the correct locations:
+
+**Screens folder:**
+- Create `screens/LoginScreen.js`
+- Create `screens/MainScreen.js`
+- Create `screens/ReportScreen.js`
+- Create `screens/SavedReportsScreen.js`
+
+**Components folder:**
+- Create `components/CustomButton.js`
+- Create `components/WorkTypeModal.js`
+- Create `components/PhotoDetailModal.js`
+
+**Config folder:**
+- Create `config/constants.js`
+- Create `config/workTypes.js`
+
+**Styles folder:**
+- Create `styles/styles.js`
+
+### 3. Replace your App.js with the new simplified version
+
+### 4. Keep these files as they are:
+- `LanguageContext.js` (root level)
+- `ProjectSelectionScreen.js` (root level)
+- `assets/images/app-logo.jpg`
+
+## ✅ Benefits of This Structure
+
+1. **Maintainability**: Each file has a single responsibility
+2. **Scalability**: Easy to add new screens or components
+3. **Reusability**: Components can be reused across screens
+4. **Organization**: Clear separation of concerns
+5. **Team Collaboration**: Easier for multiple developers to work simultaneously
+6. **Testing**: Easier to write unit tests for individual components
+
+## 📝 Import Path Changes
+
+After restructuring, imports will look like this:
+
+**In screens:**
+```javascript
+import CustomButton from "../components/CustomButton";
+import { styles } from "../styles/styles";
+import { SERVER_URL } from "../config/constants";
+```
+
+**In App.js:**
+```javascript
+import LoginScreen from "./screens/LoginScreen";
+import MainScreen from "./screens/MainScreen";
+```
+
+## 🎯 Next Steps
+
+1. Create all folders
+2. Create all new files with the provided code
+3. Replace old App.js with new App.js
+4. Test each screen to ensure imports work correctly
+5. Delete the old large App.js file once everything works
+
+## 🐛 Troubleshooting
+
+If you get import errors:
+- Check that file paths match the structure exactly
+- Ensure all folders are created
+- Verify file extensions are `.js` not `.jsx`
+- Make sure exports match imports (default vs named exports)
+
+## 📦 File Sizes Comparison
+
+**Before:**
+- App.js: ~1000+ lines
+
+**After:**
+- App.js: ~50 lines
+- LoginScreen.js: ~120 lines
+- MainScreen.js: ~100 lines
+- ReportScreen.js: ~250 lines
+- SavedReportsScreen.js: ~200 lines
+- Components: ~50-100 lines each
+- Config files: ~30-50 lines each
+- Styles: ~500 lines (but separated)
+
+**Total benefit:** Much more manageable and organized!

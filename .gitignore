@@ -24,3 +24,5 @@ dist
 
 #env
 .env
+
+app/aquachain-front/.git

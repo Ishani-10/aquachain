@@ -1,0 +1,70 @@
+{
+  "expo": {
+    "name": "aquachain-front",
+    "slug": "aquachain-front",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "permissions": [
+      "CAMERA",
+      "CAMERA_ROLL",
+      "ACCESS_FINE_LOCATION",
+      "ACCESS_COARSE_LOCATION"
+    ],
+    "icon": "./assets/images/app-logo.jpg",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/images/app-logo.jpg",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "AquaChain needs camera access to capture field photos for blue carbon reports",
+        "NSPhotoLibraryUsageDescription": "AquaChain needs photo library access to save report images",
+        "NSLocationWhenInUseUsageDescription": "AquaChain needs your location to geotag photos and track field work locations",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "AquaChain needs your location to geotag photos and track field work locations"
+      },
+      "bundleIdentifier": "com.madhur1203.aquachainfront"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/app-logo.jpg",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.madhur1203.aquachainfront",
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "output": "single"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7ce27c00-64ca-4648-bf5c-81326ace2cab"
+      }
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow AquaChain to use your location to geotag field photos and track blue carbon work."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "AquaChain needs access to your photos to capture and store field report images.",
+          "cameraPermission": "AquaChain needs camera access to take photos for field reports."
+        }
+      ]
+    ]
+  }
+}
