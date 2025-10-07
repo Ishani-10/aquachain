@@ -17,11 +17,23 @@ type HeaderMenuLink = {
 
 export const menuLinks: HeaderMenuLink[] = [
   {
-    label: "Home",
+    label: "Dashboard",
     href: "/",
   },
   {
-    label: "Debug Contracts",
+    label: "Register Project",
+    href: "/register",
+  },
+  {
+    label: "Projects",
+    href: "/projects",
+  },
+  {
+    label: "Verify",
+    href: "/verify",
+  },
+  {
+    label: "Debug",
     href: "/debug",
     icon: <BugAntIcon className="h-4 w-4" />,
   },
@@ -83,11 +95,13 @@ export const Header = () => {
         </details>
         <Link href="/" passHref className="hidden lg:flex items-center gap-2 ml-4 mr-6 shrink-0">
           <div className="flex relative w-10 h-10">
-            <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-xl">🌊</span>
+            </div>
           </div>
           <div className="flex flex-col">
-            <span className="font-bold leading-tight">Scaffold-ETH</span>
-            <span className="text-xs">Ethereum dev stack</span>
+            <span className="font-bold leading-tight text-blue-600">AquaChain</span>
+            <span className="text-xs text-gray-600">Blue Carbon Registry</span>
           </div>
         </Link>
         <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">

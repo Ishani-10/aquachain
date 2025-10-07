@@ -1,20 +1,22 @@
 {
   "name": "aquachain-ledger",
   "version": "1.0.0",
-  "description": "Blockchain-Based Blue Carbon Registry and MRV System for coastal restoration verification",
+  "description": "AquaChain - DeSci Blockchain Platform for Blue Carbon Registry and MRV (Monitoring, Reporting & Verification) of Coastal Ecosystem Restoration Projects",
   "private": true,
   "workspaces": [
     "packages/hardhat",
-    "packages/nextjs"
+    "packages/*"
   ],
   "scripts": {
-    "build": "yarn workspace @aquachain/nextjs build",
-    "dev": "yarn workspace @aquachain/nextjs dev",
+    "build": "yarn workspace @carbon-registry/frontend build",
+    "dev": "yarn workspace @carbon-registry/frontend dev",
     "hardhat": "yarn workspace @aquachain/hardhat hardhat",
     "deploy": "yarn workspace @aquachain/hardhat deploy",
     "test": "yarn workspace @aquachain/hardhat test",
-    "lint": "yarn workspace @aquachain/nextjs lint",
-    "start": "yarn workspace @aquachain/nextjs start"
+    "lint": "yarn workspace @carbon-registry/frontend lint",
+    "start": "yarn workspace @carbon-registry/frontend start",
+    "chain": "yarn workspace @aquachain/hardhat chain",
+    "compile": "yarn workspace @aquachain/hardhat compile"
   },
   "repository": {
     "type": "git",
@@ -34,5 +36,8 @@
   "devDependencies": {
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2"
+  },
+  "dependencies": {
+    "daisyui": "^5.1.27"
   }
 }

@@ -78,7 +78,7 @@ contract CarbonRegistry is Ownable, ReentrancyGuard {
 
     // --- Constructor ---
 
-    constructor() Ownable(msg.sender) {
+    constructor() Ownable() {
         // Owner (deployer) is typically MOES/NCCR or an authorized admin
     }
 
